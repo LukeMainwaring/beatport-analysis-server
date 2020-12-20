@@ -10,7 +10,17 @@ services:
       - FLASK_APP=app.py
       - FLASK_RUN_HOST=0.0.0.0
       - FLASK_ENV=development
+      - MYSQL_USER=root
+      - MYSQL_HOST=beatport-analysis-db
+      - MYSQL_DATABASE=luke_dev
+      - MYSQL_PASSWORD=belly123
+      - MYSQL_PORT=3306
     ports:
       - '5000:5000'
-  # beatport-analysis-db:
-  #   image: "mysql:latest"
+
+  beatport-analysis-db:
+    image: 'mysql:latest'
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=belly123
+      - MYSQL_DATABASE=luke_dev
