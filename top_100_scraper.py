@@ -1,11 +1,11 @@
+# TODO: move this to ./services/
+
 import requests
 import pandas as pd
 from pandas.io import sql
 from bs4 import BeautifulSoup
 from datetime import date
-# import pymysql
-# from sqlalchemy import create_engine
-from db import db_connection
+import db
 
 
 BASE_URL = 'https://www.beatport.com/'
@@ -60,18 +60,19 @@ def grab_top_100():
 def append_song_details(top_100_details):
     # Convert this to pandas dataframe and append to file
     df = pd.DataFrame(top_100_details)
-    song_details_df = pd.read_csv('top_100_details_test.csv')
+    song_details_df = pd.read_csv('./datasets/top_100_details_test.csv')
     song_details_df = song_details_df.append(df)
-    song_details_df.to_csv('top_100_details_test.csv', index=False)
+    song_details_df.to_csv('./datasets/top_100_details_test.csv', index=False)
 
 
-# TODO: read/write pandas dataframe using a mysql database in addition to csv file
+# read/write pandas dataframe using a mysql database in addition to csv file
 def append_to_db(top_100_details=None, init_from_csv=False):
 
     print('appending to db')
+    db_connection = db.get_connection()
     try:
         if init_from_csv:
-            song_details_df = pd.read_csv('top_100_details_test.csv')
+            song_details_df = pd.read_csv('./datasets/top_100_details_test.csv')
             song_details_df.to_sql(con=db_connection,
                                    name="song_details", if_exists="replace")
 

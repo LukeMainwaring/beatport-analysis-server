@@ -2,3 +2,6 @@ flask
 pymysql
 sqlalchemy
 cryptography
+requests
+pandas
+bs4

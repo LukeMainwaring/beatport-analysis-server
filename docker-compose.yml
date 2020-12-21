@@ -24,3 +24,5 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=belly123
       - MYSQL_DATABASE=luke_dev
+    ports:
+      - '33061:3306'

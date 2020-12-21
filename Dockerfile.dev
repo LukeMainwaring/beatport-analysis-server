@@ -1,10 +1,7 @@
-FROM python:3.7-alpine
+FROM python:3.8-slim-buster
 
 # Create app directory
 WORKDIR /code
-
-# Install gcc and other dependencies
-RUN apk add --no-cache gcc musl-dev linux-headers python3-dev libffi-dev openssl-dev
 
 # Install python dependencies
 COPY requirements.txt requirements.txt
