@@ -11,7 +11,6 @@ def hello_world():
     return 'Hello, World!'
 
 
-
 # TODO: get all data
 @app.route('/api/allData')
 def get_all_data():
